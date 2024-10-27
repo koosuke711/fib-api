@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+# バックエンドのURL：https://fastapi-fibonacci-a3bd910a9bde.herokuapp.com/
+
 app = FastAPI()
 
 class FibonacciResponse(BaseModel):
