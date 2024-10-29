@@ -1,7 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-
-# バックエンドのURL：https://fastapi-fibonacci-a3bd910a9bde.herokuapp.com/
 
 app = FastAPI()
 
@@ -24,8 +23,29 @@ def fibonacci(n: int) -> int:
         return b
 
 @app.get("/fib", response_model=FibonacciResponse)
-async def get_fibonacci(n: int):
+async def get_fibonacci(n: str):
+    # 整数かどうかをチェック
+    try:
+        n = int(n)
+    except ValueError:
+        return JSONResponse(
+            status_code=400,
+            content={
+                "status": 400,
+                "message": "Badrequest."
+            }
+        )
+
+    # 負の数のチェック
     if n < 0:
-        raise HTTPException(status_code=400, detail=ErrorResponse(status=400, message="Badrequest.").dict())
+        return JSONResponse(
+            status_code=400,
+            content={
+                "status": 400,
+                "message": "Badrequest."
+            }
+        )
+
+    # フィボナッチ数の計算
     fib_value = fibonacci(n)
     return {"result": fib_value}
