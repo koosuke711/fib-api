@@ -1,6 +1,6 @@
 import unittest
 from fastapi.testclient import TestClient
-from main import app  # ここで 'main' をコードが保存されたファイル名に変更してください
+from main import app
 
 class TestFibonacciEndpoint(unittest.TestCase):
 

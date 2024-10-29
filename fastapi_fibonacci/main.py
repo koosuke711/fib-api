@@ -4,13 +4,16 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+# 成功時のレスポンス
 class FibonacciResponse(BaseModel):
     result: int
 
+# エラー時のレスポンス
 class ErrorResponse(BaseModel):
     status: int
     message: str
 
+# フィボナッチ数列を計算
 def fibonacci(n: int) -> int:
     if n <= 0:
         return 0
@@ -22,6 +25,7 @@ def fibonacci(n: int) -> int:
             a, b = b, a + b
         return b
 
+# フィボナッチ数列の値を返すエンドポイント
 @app.get("/fib", response_model=FibonacciResponse)
 async def get_fibonacci(n: str):
     # 整数かどうかをチェック
@@ -46,6 +50,6 @@ async def get_fibonacci(n: str):
             }
         )
 
-    # フィボナッチ数の計算
+    # フィボナッチ数列の計算
     fib_value = fibonacci(n)
     return {"result": fib_value}
