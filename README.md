@@ -108,7 +108,7 @@ python main.py
 `unittest`を使用して、テストスクリプトを実行します。
 
 ```bash
-python -m unittest fastapi_fibonacci/test_main.py
+python -m unittest tests/test_main.py
 ```
 
 ## デプロイ

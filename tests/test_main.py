@@ -19,7 +19,7 @@ class TestFibonacciEndpoint(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {
             "status": 400,
-            "message": "Badrequest."
+            "message": "入力が無効です。整数を入力してください。"
         })
 
     # 負の値を入力したとき
@@ -28,7 +28,7 @@ class TestFibonacciEndpoint(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {
             "status": 400,
-            "message": "Badrequest."
+            "message": "負の整数が入力されています。正の整数を入力してください。"
         })
 
     # 実数を入力したとき
@@ -37,7 +37,7 @@ class TestFibonacciEndpoint(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {
             "status": 400,
-            "message": "Badrequest."
+            "message": "入力が無効です。整数を入力してください。"
         })
 
 
