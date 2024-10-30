@@ -1,6 +1,6 @@
 import unittest
 from fastapi.testclient import TestClient
-from main import app
+from fastapi_fibonacci.main import app  # パスを修正
 
 class TestFibonacciEndpoint(unittest.TestCase):
 
@@ -14,12 +14,12 @@ class TestFibonacciEndpoint(unittest.TestCase):
         self.assertEqual(response.json(), {"result": 55})
 
     # 文字列を入力したとき
-    def test_fibonacci_zero_input(self):
+    def test_fibonacci_string_input(self):
         response = self.client.get("/fib?n=aaa")
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {
-                "status": 400,
-                "message": "Badrequest."
+            "status": 400,
+            "message": "Badrequest."
         })
 
     # 負の値を入力したとき
@@ -27,17 +27,17 @@ class TestFibonacciEndpoint(unittest.TestCase):
         response = self.client.get("/fib?n=-1")
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {
-                "status": 400,
-                "message": "Badrequest."
+            "status": 400,
+            "message": "Badrequest."
         })
 
     # 実数を入力したとき
-    def test_fibonacci_negative_input(self):
+    def test_fibonacci_float_input(self):
         response = self.client.get("/fib?n=1.1")
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json(), {
-                "status": 400,
-                "message": "Badrequest."
+            "status": 400,
+            "message": "Badrequest."
         })
 
 
