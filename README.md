@@ -113,3 +113,7 @@ python -m unittest fastapi_fibonacci/test_main.py
 
 ## デプロイ
 `Procfile`を用いて、Herokuにデプロイ済み
+- エンドポイントURL
+```bash
+https://fastapi-fibonacci-a3bd910a9bde.herokuapp.com/
+```
